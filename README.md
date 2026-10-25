@@ -1,4 +1,4 @@
-## Azure Fundamentals capstone project.
+## Azure Fundamentals Capstone Project.
 ## Project Overview
 
 This project demonstrates how to build and secure cloud infrastructure on Microsoft Azure using network security controls, secure virtual machine administration, private connectivity, and identity-based access to cloud storage.
