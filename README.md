@@ -82,8 +82,10 @@ For each VM:
 9. Wait for deployment to complete, then verify the VM's networking configuration.
 
 ![VM1](./image/VM.PNG)
-
+First Virtual Machine Created
 ![VM](./image/VM1.PNG)
+
+Second Virtual Machine Created
 
 ![VM2](./image/VM2.PNG)
 
@@ -122,6 +124,9 @@ Portal wording can vary. Do not enable gateway transit or remote gateway options
 4. Inpute the Username and Password 
 5. Then click the connect botton
 ![botton](./image/Bastionpassword.PNG)
+
+Browser
+![Browser](./image/browser.PNG)
 
 
 ### Phase 3  Create the hub Network Security Group
@@ -357,19 +362,57 @@ SecurityTips: After the private endpoint and DNS configuration are in place, dis
 - Select Disabled.
 
 - Select Save
-  ![access](./image/Connection.PNG)
-  
-  ### Test access to the Blob service
 
-  From a computer outside the Azure virtual network, with no VPN or private route into the VNet, run:
+### Upload the File Through the Private Network
 
+Because public network access is disabled, perform the upload from a client that can reach the Private Endpoint.
+
+####  Azure Storage Explorer
+
+- Connect to the Virtual Machine.
+
+- Open Azure Storage Explorer.
+
+- Sign in using an Azure account with the necessary permissions.
+
+- Locate the nimbusstorage111 Storage Account.
+
+- Open the project-files container.
+
+- Select Upload → Upload Files.
+
+Choose image.
+
+- Start the upload.
+
+- Confirm that the file appears in the container.
+
+### Validate Private DNS Resolution
+
+Connect to the Windows VM and open PowerShell.
+
+![validate](./image/validate.PNG)
+
+
+![capture](./image/Connection.PNG)
+
+  #### Test Network Connectivity
+
+From PowerShell inside the VM, run:
+```
+Test-NetConnection nimbusstorage111.blob.core.windows.net -Port 443
+```
+Check the output for:
 
 ```
-   nslookup nimbusstorage111.blob.core.windows.net
-```
-then:
-
-```
-  curl -I https://nimbusstorage111.blob.core.windows.net/
-```  
-![capture](./image/security%20test.PNG)
+TcpTestSucceeded : True
+ ```
+ 
+#### Test authenticated Blob access
+From the VM, use Azure Storage Explorer or another authenticated Azure Storage client.
+1. Sign in with an identity that has suitable Blob data permissions.
+2. Open nimbusstorage111.
+3. Open the project-files container.
+4. Upload test.txt.
+5. Confirm that the file appears in the container.
+![unaccessaible](./image/unaccessableimage.PNG)
