@@ -1,9 +1,11 @@
 ## Azure Fundamentals Capstone Project.
 ## Project Overview
 
+![Diagrame](./image/architecture.PNG)
+
 This project demonstrates how to build and secure cloud infrastructure on Microsoft Azure using network security controls, secure virtual machine administration, private connectivity, and identity-based access to cloud storage.
 
-The implementation involved provisioning and configuring an Ubuntu virtual machine, establishing secure administrative connectivity through Azure Bastion, and working with Virtual Networks (VNets), subnets, and Network Security Groups (NSGs) to control network traffic. The project also secured Azure Blob Storage using a Private Endpoint, Private DNS, and a system-assigned managed identity.
+The implementation involved provisioning and configuring an Ubuntu virtual machine, establishing secure administrative connectivity through Azure Bastion, and working with Virtual Networks (VNets), subnets, and Network Security Groups (NSGs) to control network traffic. In the project i also  secured Azure Blob Storage using a Private Endpoint, Private DNS, and a system-assigned managed identity.
 
 Public network access to the storage account was disabled to reduce exposure through its public endpoint. The virtual machine successfully resolved the storage account hostname to the private endpoint IP address (`10.0.2.5`) and used its managed identity to list and download a stored file without relying on hard-coded storage credentials.
 
@@ -41,6 +43,7 @@ Together, these controls demonstrate the principle of **defense in depth**: comb
 2. Set the resource group name as Nimbus-lab
 3. Choose the region
 4. Select   Review + create,Then create
+
 ![ResourceGroup](./image/Resource.PNG)
 
 ### Phase 2: Create hub Vnet 
@@ -66,9 +69,9 @@ Review the settings and select Create.
 
    ![spokevnet](./image/nimbus-spoke-vnet.PNG)
 
-   ### Phase 4 — Deploy three Linux VMs
+   ### Phase 4 — Deploy Two Linux VMs
 
-   Create three Linux virtual machines. The exact portal labels may vary slightly.
+   Create two Linux virtual machines. The exact portal labels may vary slightly.
 
 For each VM:
 1. Search for Virtual machines and select Create → Azure virtual machine.
